@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changuita - Encontrá u ofrecé tu laburo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Encabezado con Botón de Menú y Logo Centrado Clickeable -->
+  <header class="encabezado-app">
+    <div class="contenedor-encabezado">
+      
+      <!-- Botón para abrir el Menú Lateral -->
+      <button id="boton-abrir-menu-lateral" class="boton-conmutar-menu" aria-label="Abrir menú de navegación">
+        ☰ <span class="texto-boton">Menú</span>
+      </button>
+
+      <!-- Nombre de la app clickeable (lleva al Inicio) -->
+      <div class="marca">
+        <button id="boton-marca" class="boton-marca" title="Ir al Inicio">
+          <h1>Changuita 🛠️</h1>
+          <p>Conectando laburos y profesionales</p>
+        </button>
+      </div>
+
+      <!-- Espaciador para equilibrar el centrado -->
+      <div class="espaciador-encabezado"></div>
+
+    </div>
+  </header>
+
+  <!-- FONDO OSCURO (OVERLAY) -->
+  <div id="capa-oscura-lateral" class="capa-oscura-lateral"></div>
+
+  <!-- MENÚ LATERAL DESLIZANTE -->
+  <aside id="menu-lateral" class="menu-lateral" aria-label="Menú de navegación lateral">
+    <div class="encabezado-menu-lateral">
+      <h2>Menú</h2>
+      <button id="boton-cerrar-menu-lateral" class="boton-cerrar-menu-lateral" aria-label="Cerrar menú">❌</button>
+    </div>
+
+    <nav class="navegacion-lateral">
+      <button id="boton-navegacion-inicio" class="item-menu-lateral activo">
+        <span class="icono">🏠</span> Inicio
+      </button>
+      <button id="boton-navegacion-catalogo" class="item-menu-lateral">
+        <span class="icono">🔍</span> Buscar Laburo
+      </button>
+      <button id="boton-navegacion-formulario" class="item-menu-lateral">
+        <span class="icono">➕</span> Publicar mi Perfil
+      </button>
+    </nav>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="contenido-principal">
+
+    <!-- SECCIÓN DE INICIO (HOME) -->
+    <section id="seccion-inicio" class="seccion-vista vista-activa">
+      <div class="caja-bienvenida">
+        <h2>Bienvenido a Changuita 🇦🇷</h2>
+        <p class="texto-bienvenida">
+          La plataforma pensada para conectar en forma directa y rápida a personas que necesitan resolver un trabajo con trabajadores independientes y profesionales listos para laburar.
+        </p>
+
+        <div class="cuadricula-tarjetas-bienvenida">
+          <div class="tarjeta-bienvenida">
+            <span class="icono-bienvenida">🔍</span>
+            <h3>¿Buscás a alguien?</h3>
+            <p>Explorá perfiles de plomeros, electricistas, diseñadores, programadores y más. Mirá su experiencia, revisá sus trabajos y pediles presupuesto directo por WhatsApp.</p>
+            <button id="boton-inicio-buscar" class="boton-principal">Ver Profesionales</button>
+          </div>
+
+          <div class="tarjeta-bienvenida">
+            <span class="icono-bienvenida">🛠️</span>
+            <h3>¿Buscás laburo?</h3>
+            <p>Publicá tu perfil gratis en un par de pasos, mostrá lo que sabés hacer, adjuntá tus trabajos previos y empezá a recibir consultas directas de clientes.</p>
+            <button id="boton-inicio-publicar" class="boton-principal">Ofrecer mi Servicio</button>
+          </div>
+        </div>
+
+        <div class="sobre-changuita">
+          <h3>¿Cuál es nuestra idea?</h3>
+          <p>
+            En <strong>Changuita</strong> creemos en el valor del trabajo independiente. Nuestra meta es eliminar intermediarios complicados para que contratar o conseguir una changa sea algo simple, transparente y accesible para todos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: Catálogo y Búsqueda -->
+    <section id="seccion-catalogo" class="seccion-vista vista-oculta">
+      <h2>Gente lista para laburar</h2>
+
+      <div class="caja-filtros">
+        <div class="grupo-filtro">
+          <label for="campo-busqueda">Buscá por nombre o qué hace:</label>
+          <input type="text" id="campo-busqueda" placeholder="Ej. Plomero, María, Gasista...">
+        </div>
+
+        <div class="grupo-filtro">
+          <label for="filtro-rubro">Filtrá por rubro:</label>
+          <select id="filtro-rubro">
+            <option value="todos">Todos los rubros</option>
+            <option value="Oficios">Oficios (Plomería, Gas, etc.)</option>
+            <option value="Hogar">Servicios del Hogar / Limpieza</option>
+            <option value="Tecnología">Tecnología y Programación</option>
+            <option value="Diseño">Diseño y Creatividad</option>
+            <option value="Otros">Otros Laburos</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="contenedor-perfiles" class="cuadricula-perfiles"></div>
+    </section>
+
+    <!-- SECCIÓN 2: Formulario para Agregar Perfil -->
+    <section id="seccion-formulario" class="seccion-vista vista-oculta">
+      <h2>Sumate a Changuita</h2>
+      <p class="introduccion-formulario">Completá tus datos para ofrecer lo que sabés hacer y empezar a recibir pedidos de presupuesto.</p>
+
+      <form id="formulario-perfil" novalidate>
+        <div class="grupo-formulario">
+          <label for="nombre">Nombre y Apellido *</label>
+          <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+          <span class="mensaje-error" id="error-nombre"></span>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="profesion">Oficio o Profesión *</label>
+          <input type="text" id="profesion" placeholder="Ej. Plomero, Diseñadora, Electricista" required>
+          <span class="mensaje-error" id="error-profesion"></span>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="rubro">Rubro *</label>
+          <select id="rubro" required>
+            <option value="">Elegí un rubro</option>
+            <option value="Oficios">Oficios (Plomería, Gas, etc.)</option>
+            <option value="Hogar">Servicios del Hogar / Limpieza</option>
+            <option value="Tecnología">Tecnología y Programación</option>
+            <option value="Diseño">Diseño y Creatividad</option>
+            <option value="Otros">Otros Laburos</option>
+          </select>
+          <span class="mensaje-error" id="error-rubro"></span>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="contacto">Teléfono o WhatsApp de contacto *</label>
+          <input type="tel" id="contacto" placeholder="Ej. 1123456789" required>
+          <span class="mensaje-error" id="error-contacto"></span>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="enlace-cv">Link a tu CV, Portfolio o Fotos de tus laburos *</label>
+          <input type="url" id="enlace-cv" placeholder="Ej. https://mi-portfolio.com o link a Drive" required>
+          <span class="mensaje-error" id="error-enlace-cv"></span>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="descripcion">Contanos qué hacés y qué experiencia tenés *</label>
+          <textarea id="descripcion" rows="4" placeholder="Contá un poco cómo laburás, qué zonas cubrís, etc." required></textarea>
+          <span class="mensaje-error" id="error-descripcion"></span>
+        </div>
+
+        <button type="submit" class="boton-principal">Publicar mi Perfil</button>
+        <p id="mensaje-exito-formulario" class="mensaje-exito" role="alert"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Ventana Modal para Contactar -->
+  <dialog id="modal-contacto">
+    <div class="contenido-modal">
+      <button id="boton-cerrar-modal" aria-label="Cerrar ventana">❌</button>
+      <h3 id="nombre-trabajador-modal">Hablar con el profesional</h3>
+      <p id="profesion-trabajador-modal"></p>
+      <hr>
+
+      <form id="formulario-contacto" novalidate>
+        <input type="hidden" id="id-trabajador">
+        
+        <div class="grupo-formulario">
+          <label for="nombre-cliente">Tu Nombre *</label>
+          <input type="text" id="nombre-cliente" placeholder="Ej. Carlos" required>
+        </div>
+
+        <div class="grupo-formulario">
+          <label for="mensaje-cliente">¿Qué necesitas consultar o pedir presupuesto? *</label>
+          <textarea id="mensaje-cliente" rows="3" placeholder="Hola, necesito saber cuánto me cobrás para arreglar..." required></textarea>
+        </div>
+
+        <button type="submit" class="boton-principal">Mandar consulta</button>
+        <p id="mensaje-modal" class="mensaje-exito" role="alert"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- PIE DE PÁGINA CON ACCESIBILIDAD -->
+  <footer class="pie-pagina-app">
+    <div class="contenedor-pie-pagina">
+      <p>&copy; 2026 <strong>Changuita</strong> - Trabajo Final CILSA</p>
+      
+      <div class="accesibilidad-pie-pagina" aria-label="Herramientas de accesibilidad">
+        <span class="etiqueta-pie-pagina">Opciones de pantalla:</span>
+        <button id="boton-contraste" class="boton-accesibilidad-pie" aria-label="Cambiar modo de alto contraste">🌓 Alto Contraste</button>
+        <button id="boton-aumentar-fuente" class="boton-accesibilidad-pie" aria-label="Aumentar tamaño de letra">A+</button>
+        <button id="boton-disminuir-fuente" class="boton-accesibilidad-pie" aria-label="Disminuir tamaño de letra">A-</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts modularizados en español -->
+  <script src="datos.js"></script>
+  <script src="accesibilidad.js"></script>
+  <script src="navegacion.js"></script>
+  <script src="interfaz.js"></script>
+  <script src="formulario.js"></script>
+</body>
+</html>
